@@ -4,11 +4,10 @@ import br.com.calcassinc.webservice.dto.UserDTO;
 import br.com.calcassinc.webservice.model.User;
 import br.com.calcassinc.webservice.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -28,6 +27,15 @@ public class UserController {
         List<UserDTO> userDTO = users.stream().map(u -> new UserDTO(u)).toList();
 
         return ResponseEntity.ok().body(userDTO);
+
+    }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public ResponseEntity<UserDTO> findById(@PathVariable String id){
+
+        User user = userService.findById(id);
+
+        return ResponseEntity.ok().body(new UserDTO(user));
 
     }
 
