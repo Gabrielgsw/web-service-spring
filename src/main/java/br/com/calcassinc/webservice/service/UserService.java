@@ -1,5 +1,6 @@
 package br.com.calcassinc.webservice.service;
 
+import br.com.calcassinc.webservice.dto.UserDTO;
 import br.com.calcassinc.webservice.model.User;
 import br.com.calcassinc.webservice.repository.UserRepository;
 import com.sun.jdi.ObjectCollectedException;
@@ -29,5 +30,18 @@ public class UserService {
             throw new ObjectCollectedException("Objeto não encontrado");
         }
         return userRepository.findById(id).orElseThrow();
+    }
+
+    public User fromDTO (UserDTO userDTO){
+        User user = new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+
+        return userRepository.save(user);
+    }
+
+
+    public User addUser(User user){
+
+        return userRepository.save(user);
+
     }
 }
