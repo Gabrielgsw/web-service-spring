@@ -1,6 +1,7 @@
 package br.com.calcassinc.webservice.service;
 
 import br.com.calcassinc.webservice.dto.UserDTO;
+import br.com.calcassinc.webservice.model.Post;
 import br.com.calcassinc.webservice.model.User;
 import br.com.calcassinc.webservice.repository.UserRepository;
 import com.sun.jdi.ObjectCollectedException;
@@ -60,5 +61,7 @@ public class UserService {
         newObj.setName(obj.getName());
         newObj.setEmail(obj.getEmail());
     }
+
+
 
 }

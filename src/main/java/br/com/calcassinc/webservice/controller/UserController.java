@@ -1,6 +1,7 @@
 package br.com.calcassinc.webservice.controller;
 
 import br.com.calcassinc.webservice.dto.UserDTO;
+import br.com.calcassinc.webservice.model.Post;
 import br.com.calcassinc.webservice.model.User;
 import br.com.calcassinc.webservice.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,15 @@ public class UserController {
         List<UserDTO> userDTO = users.stream().map(u -> new UserDTO(u)).toList();
 
         return ResponseEntity.ok().body(userDTO);
+
+    }
+
+    @RequestMapping(value = "/{id}/posts",method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> getPostsByUserID(@RequestParam String id) {
+
+        User user = userService.findById(id);
+
+        return ResponseEntity.ok().body(user.getPosts());
 
     }
 
