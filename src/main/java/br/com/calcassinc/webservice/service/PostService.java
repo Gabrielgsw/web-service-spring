@@ -6,6 +6,7 @@ import br.com.calcassinc.webservice.model.User;
 import br.com.calcassinc.webservice.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,5 +23,10 @@ public class PostService {
 
         Optional<Post> u = postRepository.findById(id);
         return u.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado!"));
+    }
+
+    public List<Post> findByTitle(String text){
+
+        return postRepository.findByTitleContainingIgnoreCase(text);
     }
 }
